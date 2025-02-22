@@ -1,0 +1,21 @@
+﻿services:
+  bowllytics-api:
+    image: bowllytics-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+  
+  bowllytics-db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: bowllytics
+      POSTGRES_PASSWORD: bowllytics
+      POSTGRES_DB: bowllytics
+      
+    ports:
+        - "5432:5432"
+    volumes:
+      - bowllytics-db-data:/var/lib/postgresql/data
+
+volumes:
+    bowllytics-db-data:
